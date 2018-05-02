@@ -1,0 +1,47 @@
+CREATE TABLE Users
+(
+  id int(100) NOT NULL AUTO_INCREMENT,
+  email char(100) NOT NULL,
+  name char(100) NOT NULL,
+  bod char(50),
+  password char(100) NOT NULL,
+  job char(100) ,
+  address char(100)  NOT NULL,
+  interests char(100),
+  credit int(100) NOT NULL,
+  photo char(100),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Products
+(
+  id int(100) NOT NULL AUTO_INCREMENT,
+  name char(100) NOT NULL,
+  price int(100) NOT NULL,
+  image char(100),
+  description char(255),
+  quantity int(100) NOT NULL,
+  category char(100),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE buy
+(
+  bquantity int(100) NOT NULL,
+  dop char(50) NOT NULL,
+  userid int(100) NOT NULL,
+  prodid int(100) NOT NULL,
+  PRIMARY KEY (dop, userid, prodid),
+  FOREIGN KEY (userid) REFERENCES Users(id),
+  FOREIGN KEY (prodid) REFERENCES Products(id)
+);
+
+CREATE TABLE cart
+(
+  bquantity int(100) NOT NULL,
+  userid int(100) NOT NULL,
+  prodid int(100) NOT NULL,
+  PRIMARY KEY (userid, prodid),
+  FOREIGN KEY (userid) REFERENCES Users(id),
+  FOREIGN KEY (prodid) REFERENCES Products(id)
+);
